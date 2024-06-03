@@ -6,7 +6,7 @@ import solidJs from '@astrojs/solid-js'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://thestoryofourworld.com/',
+  site: 'https://ourworldtale.com/',
   integrations: [
     mdx(),
     sitemap(),

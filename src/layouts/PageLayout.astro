@@ -1,0 +1,22 @@
+---
+import '@styles/global.css'
+import BaseHead from '@components/BaseHead.astro'
+import Drawer from '@components/Drawer.astro'
+const { description } = Astro.props
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <BaseHead title={'The Story of Our World'} description={description} />
+    <script src='https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js'
+    ></script>
+    <link rel='icon' href='/learn.png' type='image/png' />
+  </head>
+  <body>
+    <Drawer />
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>

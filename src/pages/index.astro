@@ -3,198 +3,53 @@ import PageLayout from '@layouts/PageLayout.astro'
 import { SITE } from '@consts'
 import TwinklingStars from '@components/TwinklingStars.astro'
 import MeteorShower from '@components/MeteorShower.astro'
+import Hero from '@components/Hero.astro'
+import Verse from '@components/Verse'
+import { poem } from '@components/Verse'
 ---
 
 <PageLayout title='Home' description={SITE.DESCRIPTION}>
-  <!-- Light Mode: Particles -->
   <div class='absolute inset-0 block dark:hidden'>
     <div id='particles1' class='fixed inset-0'></div>
     <div id='particles2' class='fixed inset-0'></div>
     <div id='particles3' class='fixed inset-0'></div>
   </div>
-
-  <!-- Dark Theme: Stars -->
   <div class='absolute inset-0 bg-black hidden dark:block'>
     <div id='stars1' class='fixed inset-0'></div>
     <div id='stars2' class='fixed inset-0'></div>
     <div id='stars3' class='fixed inset-0'></div>
   </div>
-
-  <!-- Dark Theme: Twinkling Stars / Metors -->
   <div id='galaxy' class='fixed inset-0'>
     <div class='hidden dark:block'>
       <TwinklingStars />
       <MeteorShower />
     </div>
   </div>
-
-  <script is:inline src='/js/bg.js'></script>
-  <script>
-    import ScrollReveal from 'scrollreveal'
-
-    const sr = ScrollReveal({
-      origin: 'top',
-      distance: '0px',
-      duration: 200,
-      reset: true,
-      opacity: 1,
-    })
-
-    sr.reveal('.poem', { opacity: 0, cleanup: true, viewFactor: 0.8 })
-    sr.reveal('.footer', { opacity: 0, cleanup: true })
-    sr.reveal('.poem-1', { opacity: 0, cleanup: true, viewFactor: 0.9 })
-    // sr.clean('.poem', { opacity: 0 })
-  </script>
-
-  <!-- HERO -->
-  <section class='relative h-screen w-full'>
-    <div
-      id='planetcont'
-      class='animate absolute inset-0 top-1/4 overflow-hidden'
-    >
-      <div
-        id='crescent'
-        class='absolute top-0 left-1/2 -translate-x-1/2 w-[250vw] min-h-[100vh] aspect-square rounded-full p-[1px] bg-gradient-to-b from-black/25 dark:from-white/75 from-0% to-transparent to-5%'
-      >
-        <div
-          id='planet'
-          class='w-full h-full bg-white dark:bg-black rounded-full p-[1px] overflow-hidden flex justify-center'
-        >
-          <div
-            id='blur'
-            class='w-full h-20 rounded-full bg-neutral-900/25 dark:bg-white/25 blur-3xl'
-          >
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class='animate absolute h-full w-full flex items-center justify-center hero'
-    >
-      <div class='relative w-full h-full flex items-center justify-center'>
-        <div class='p-5 text-center flex flex-col gap-1'>
-          <p
-            class='animated text-lg md:text-xl lg:text-2xl font-semibold opacity-75'
-          >
-            You are reading...
-          </p>
-          <p
-            class='animated text-2xl md:text-3xl lg:text-4xl font-bold uppercase text-black dark:text-white'
-          >
-            The Story of Our World
-          </p>
-          <p class='animated text-sm md:text-base lg:text-lg opacity-75'>
-            by Khac Minh Dau.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <Hero />
   <div class='relative bg-white dark:bg-black sm:text-lg'>
-    <div
-      class='mx-auto max-w-screen-sm flex flex-col justify-center space-y-24 h-screen poem'
-    >
-      <!-- About Section -->
-      <article class='sm:text-lg'>
-        <p class='poem-line relative bottom-20'>
-          <span class='opacity-75'>1.</span> In the beginning there was Earth, and
-          animals, and there was man.
-        </p>
-      </article>
-    </div>
-    <div
-      class='mx-auto max-w-screen-sm flex flex-col justify-center space-y-24 h-screen poem'
-    >
-      <article class='sm:text-lg'>
-        <p class='poem-line relative bottom-20'>
-          <span class='opacity-75'>2.</span> Man populated the Earth plenty, and
-          they prospered.
-        </p>
-      </article>
-    </div>
-    <div
-      class='mx-auto max-w-screen-sm flex flex-col justify-center space-y-24 h-screen poem'
-    >
-      <article class='sm:text-lg'>
-        <p class='poem-line relative bottom-20'>
-          <span class='opacity-75'>3.</span> Man built technologies, and cities,
-          and weapons.
-        </p>
-      </article>
-    </div>
-    <div
-      class='mx-auto max-w-screen-sm flex flex-col justify-center space-y-24 h-screen poem'
-    >
-      <article class='sm:text-lg'>
-        <p class='poem-line relative bottom-20'>
-          <span class='opacity-75'>4.</span> For thousands of years, fantastical
-          civilizations thrived.
-        </p>
-      </article>
-    </div>
-    <div
-      class='mx-auto max-w-screen-sm flex flex-col justify-center space-y-24 h-screen poem'
-    >
-      <article class='sm:text-lg'>
-        <p class='poem-line relative bottom-20'>
-          <span class='opacity-75'>5.</span> Then they angered the Gods, and a Great
-          Flood sank the world.
-        </p>
-      </article>
-    </div>
-    <div
-      class='mx-auto max-w-screen-sm flex flex-col justify-center space-y-24 h-screen poem'
-    >
-      <article class='sm:text-lg'>
-        <p class='poem-line relative bottom-20'>
-          <span class='opacity-75'>6.</span> Those that tended herds and farmed crops
-          lived high up, and they survived.
-        </p>
-      </article>
-    </div>
-    <div
-      class='mx-auto max-w-screen-sm flex flex-col justify-center space-y-24 h-screen poem'
-    >
-      <!-- About Section -->
-      <article class='sm:text-lg'>
-        <p class='poem-line relative bottom-20'>
-          <span class='opacity-75'>7.</span> They then populated the Earth plenty,
-          and they prospered.
-        </p>
-      </article>
-    </div>
+    {
+      poem.map((verse) => {
+        return (
+          <div class='mx-auto max-w-screen-sm flex flex-col justify-center space-y-24 h-[60vh] poem'>
+            <Verse number={poem.indexOf(verse) + 1} />
+          </div>
+        )
+      })
+    }
     <div
       class='mx-auto max-w-screen-sm flex flex-col justify-center space-y-24 h-screen poem-1'
     >
       <article class='sm:text-lg z-40'>
-        <p class='poem-line'>
-          <span class='opacity-75'>1.</span> In the beginning there was Earth, and
-          animals, and there was man.
-        </p>
-        <p class='poem-line'>
-          <span class='opacity-75'>2.</span> Man populated the Earth plenty, and
-          they prospered.
-        </p>
-        <p class='poem-line'>
-          <span class='opacity-75'>3.</span> Man built technologies, and cities,
-          and weapons.
-        </p>
-        <p class='poem-line'>
-          <span class='opacity-75'>4.</span> For thousands of years, fantastical
-          civilizations thrived.
-        </p>
-        <p class='poem-line'>
-          <span class='opacity-75'>5.</span> Then they angered the Gods, and a Great
-          Flood sank the world.
-        </p>
-        <p class='poem-line'>
-          <span class='opacity-75'>6.</span> Those that tended herds and farmed crops
-          lived high up, and they survived.
-        </p>
-        <p class='poem-line'>
-          <span class='opacity-75'>7.</span> They then populated the Earth plenty,
-          and they prospered.
-        </p>
+        {
+          poem.map((verse) => {
+            return (
+              <p class='poem-line'>
+                <span class='opacity-75'>{poem.indexOf(verse) + 1}.</span>{' '}
+                {verse}
+              </p>
+            )
+          })
+        }
       </article>
       <div
         class='bg-black h-40 absolute bottom-0 p-4 w-full max-w-screen-sm flex flex-col-reverse z-20 items-center gap-1 text-sm'
@@ -222,4 +77,20 @@ import MeteorShower from '@components/MeteorShower.astro'
       <p class='text-base'>Scroll down slowly</p>
     </div>
   </div>
+  <script>
+    import ScrollReveal from 'scrollreveal'
+
+    const sr = ScrollReveal({
+      origin: 'top',
+      distance: '0px',
+      duration: 200,
+      reset: true,
+      opacity: 1,
+    })
+
+    sr.reveal('.poem', { opacity: 0, cleanup: true, viewFactor: 0.9 })
+    sr.reveal('.footer', { opacity: 0, cleanup: true })
+    sr.reveal('.poem-1', { opacity: 0, cleanup: true, viewFactor: 0.9 })
+  </script>
+  <script is:inline src='/js/bg.js'></script>
 </PageLayout>

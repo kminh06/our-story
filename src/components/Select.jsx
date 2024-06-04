@@ -7,7 +7,7 @@ export default function Select() {
   return (
     <select
       id='language'
-      className='py-1 px-3 truncate rounded text-sm lg:text-base border border-white/25 blend bg-black w-40'
+      className='py-1.5 px-3 truncate rounded text-sm lg:text-base border border-white/25 blend bg-black w-40'
       value={$language}
       onChange={(event) => {
         language.set(event.target.value)

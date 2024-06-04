@@ -5,7 +5,10 @@ import TwinklingStars from '@components/TwinklingStars.astro'
 import MeteorShower from '@components/MeteorShower.astro'
 import Hero from '@components/Hero.astro'
 import Verse from '@components/Verse'
-import { poem } from '@components/Verse'
+import { languages } from '@components/languages.js'
+import FullPoem from '@components/FullPoem'
+
+const poem = languages['en'].poem
 ---
 
 <PageLayout title='Home' description={SITE.DESCRIPTION}>
@@ -31,7 +34,7 @@ import { poem } from '@components/Verse'
       poem.map((verse) => {
         return (
           <div class='mx-auto max-w-screen-sm flex flex-col justify-center space-y-24 h-[60vh] poem'>
-            <Verse number={poem.indexOf(verse) + 1} />
+            <Verse client:load number={poem.indexOf(verse) + 1} />
           </div>
         )
       })
@@ -39,18 +42,7 @@ import { poem } from '@components/Verse'
     <div
       class='mx-auto max-w-screen-sm flex flex-col justify-center space-y-24 h-screen poem-1'
     >
-      <article class='sm:text-lg z-40'>
-        {
-          poem.map((verse) => {
-            return (
-              <p class='poem-line'>
-                <span class='opacity-75'>{poem.indexOf(verse) + 1}.</span>{' '}
-                {verse}
-              </p>
-            )
-          })
-        }
-      </article>
+      <FullPoem client:load />
       <div
         class='bg-black h-40 absolute bottom-0 p-4 w-full max-w-screen-sm flex flex-col-reverse z-20 items-center gap-1 text-sm'
       >
@@ -62,19 +54,17 @@ import { poem } from '@components/Verse'
     <div class='fixed p-2 bottom-4 flex flex-col w-full items-center gap-1'>
       <svg
         xmlns='http://www.w3.org/2000/svg'
-        width='32'
-        height='32'
         viewBox='0 0 24 24'
         fill='none'
         stroke='currentColor'
         stroke-width='2'
         stroke-linecap='round'
         stroke-linejoin='round'
-        class='lucide lucide-mouse'
+        class='lucide lucide-mouse h-6 w-6 sm:h-8 sm:w-8'
         ><rect x='5' y='2' width='14' height='20' rx='7'></rect><path
           d='M12 6v4'></path></svg
       >
-      <p class='text-base'>Scroll down slowly</p>
+      <p class='text-sm sm:text-base'>Scroll down slowly</p>
     </div>
   </div>
   <script>

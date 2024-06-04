@@ -1,3 +1,7 @@
+---
+import Intro from './Intro'
+---
+
 <section class='relative h-screen w-full'>
   <div id='planetcont' class='animate absolute inset-0 top-1/4 overflow-hidden'>
     <div
@@ -20,21 +24,7 @@
     class='animate absolute h-full w-full flex items-center justify-center hero'
   >
     <div class='relative w-full h-full flex items-center justify-center'>
-      <div class='p-5 text-center flex flex-col gap-1'>
-        <p
-          class='animated text-lg md:text-xl lg:text-2xl font-semibold opacity-75'
-        >
-          You are reading...
-        </p>
-        <p
-          class='animated text-2xl md:text-3xl lg:text-4xl font-bold uppercase text-black dark:text-white'
-        >
-          The Story of Our World
-        </p>
-        <p class='animated text-sm md:text-base lg:text-lg opacity-75'>
-          by Khac Minh Dau.
-        </p>
-      </div>
+      <Intro client:load />
     </div>
   </div>
 </section>

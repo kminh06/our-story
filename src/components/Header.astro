@@ -1,0 +1,61 @@
+---
+import { SITE, LINKS } from '@consts'
+import { cn } from '@lib/utils'
+const { pathname } = Astro.url
+const subpath = pathname.match(/[^/]+/g)
+import Container from '@components/Container.astro'
+import Select from '@components/Select'
+---
+
+<header id='header' class='fixed top-0 w-full h-16 z-50'>
+  <Container size='md'>
+    <div
+      class='relative h-full w-full flex flex-col items-center justify-center'
+    >
+      <div class='flex flex-row items-center justify-center gap-4 top-0 w-full'>
+        <label
+          for='language'
+          class='animated hidden sm:block text-sm lg:text-base opacity-75'
+        >
+          Choose your language:
+        </label>
+        <Select client:load />
+      </div>
+    </div>
+  </Container>
+</header>
+
+<style>
+  #header-drawer-button > #drawer-open {
+    @apply block;
+  }
+
+  #header-drawer-button > #drawer-close {
+    @apply hidden;
+  }
+
+  #header-drawer-button.open > #drawer-open {
+    @apply hidden;
+  }
+
+  #header-drawer-button.open > #drawer-close {
+    @apply block;
+  }
+</style>
+
+<script is:inline>
+  function toggleDrawer() {
+    const drawer = document.getElementById('drawer')
+    const drawerButton = document.getElementById('header-drawer-button')
+    drawer?.classList.toggle('open')
+    drawerButton?.classList.toggle('open')
+  }
+
+  function initializeDrawerButton() {
+    const drawerButton = document.getElementById('header-drawer-button')
+    drawerButton?.addEventListener('click', toggleDrawer)
+  }
+
+  document.addEventListener('astro:after-swap', initializeDrawerButton)
+  initializeDrawerButton()
+</script>

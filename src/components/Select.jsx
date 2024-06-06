@@ -16,9 +16,10 @@ export default function Select() {
       <option value='en'>English</option>
       <option value='vi'>Tiếng Việt</option>
       <option value='es'>Español</option>
-      <option value='zh'>中文</option>
       <option value='fr'>Français</option>
+      <option value='zh'>中文</option>
       <option value='ar'>العربية</option>
+      <option value='ja'>日本語</option>
     </select>
   )
 }
